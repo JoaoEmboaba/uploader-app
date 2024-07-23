@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import axios from 'axios';
 import { enviroment } from 'enviroments/enviroment'
 
 @Component({
   selector: 'file-upload',
   templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.css']
+  styleUrls: ['./file-upload.component.css'],
 })
 export class FileUploadComponent {
   selectFile: File | null = null;
@@ -36,6 +37,7 @@ export class FileUploadComponent {
         },
         onUploadProgress: (progressEvent: any) => {
           this.uploadProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          console.log(progressEvent);
           console.log(`Upload Progress: ${this.uploadProgress}%`);
         }
       });
@@ -44,7 +46,9 @@ export class FileUploadComponent {
       console.error('Erro fazendo o upload do arquivo: ', error);
       throw error;
     }
+    this.uploadProgress = 100;
   }
+
 
   async handleUpload() {
     try {
