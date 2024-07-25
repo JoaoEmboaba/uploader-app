@@ -1,8 +1,9 @@
-<div class="file-upload">
+<div class="container">
   <h1>File Upload component</h1>
-  <input type="file" (change)="handleFileChange($event)">
-  <button (click)="handleUpload()">Upload</button>
-  <div *ngIf="uploadProgress > 0">
-    Upload progress: {{ uploadProgress }}%
+  <div class="file-upload">
+    <input type="file" (change)="handleFileChange($event)">
+    <br>
+    <button (click)="handleUpload()">Upload</button>
+    <mat-progress-bar id="progress-bar" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
   </div>
-</div>
+  </div>
