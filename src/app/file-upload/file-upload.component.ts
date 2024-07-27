@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import axios from 'axios';
 import { enviroment } from 'enviroments/enviroment'
 
@@ -8,6 +7,7 @@ import { enviroment } from 'enviroments/enviroment'
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css'],
 })
+
 export class FileUploadComponent {
   selectFile: File | null = null;
   uploadProgress: number = 0;
@@ -20,9 +20,9 @@ export class FileUploadComponent {
   async getPresignedUrl() : Promise<string> {
     try {
       const response = await axios.get(this.apiEndpoint);
-      const presignedUrl: string = response.data.presignedUrl;
-      console.log(presignedUrl);
-      return presignedUrl;
+      const preSignedUrl = response.data.presignedUrl;
+      console.log(preSignedUrl);
+      return preSignedUrl;
     } catch(error: any) {
       console.error('Erro ao consultar/gerar URL pré assinada', error);
       throw error;
@@ -47,8 +47,8 @@ export class FileUploadComponent {
       throw error;
     }
     this.uploadProgress = 100;
+    window.alert('Upload concluído com sucesso\nA url de download foi copiada para a sua área de transferência');
   }
-
 
   async handleUpload() {
     try {
@@ -56,8 +56,7 @@ export class FileUploadComponent {
         window.alert('Nenhum arquivo selecionado');
         return;
       }
-      const preSignedUrl = await this.getPresignedUrl();
-      await this.uploadToPresignedUrl(preSignedUrl);
+      await this.uploadToPresignedUrl(await this.getPresignedUrl());
     } catch(error: any) {
       console.error('Erro realizando o upload', error);
     }

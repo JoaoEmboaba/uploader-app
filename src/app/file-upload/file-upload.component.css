@@ -1,16 +1,21 @@
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: linear-gradient(134.57deg, #694794 0.74%, #000000 100%);
 }
 
-#progress-bar {}
+#progress-bar {
+  width: 200px;
+}
 
 .file-upload {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .file-upload > input {
@@ -18,6 +23,7 @@
 }
 
 .file-upload > button {
+  width: 200px;
   padding: 20px;
 }
 
