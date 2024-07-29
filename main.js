@@ -1,48 +1,19 @@
-const { app, BrowserWindow, Tray, Menu } = require('electron');
+const TrayWindow = require("electron-tray-window");
 
-let win
-let quit = false
+const { ipcMain, Tray, app, BrowserWindow } = require("electron");
+const path = require("path");
 
-const createWindow = () => {
-    win = new BrowserWindow({
-    height: 400,
-    width: 400,
-    icon: __dirname + './src/assets/upload.png'
-  });
-
-  win.loadFile('./dist/uploader-ng-app/index.html');
-
-  win.on('minimize', (event) => {
-    event.preventDefault();
-    win.hide();
-  })
-
-  win.on('close', (event) => {
-    if(!quit) {
-      event.preventDefault();
-      win.hide()
-    }
-  })
-}
-
-app.whenReady().then(() => {
-  createWindow();
-})
-
-app.on('ready', () => {
-  const tray = new Tray(__dirname + './src/assets/upload.png')
-
-  tray.setContextMenu(Menu.buildFromTemplate([
-    {
-      label: 'Exibir uploader', click: () => {
-        win.show();
-      }
-    },
-    {
-      label: 'Sair', click: () => {
-        quit = true;
-        app.quit();
-      }
-    }
-  ]))
-})
+app.on("ready", () => {
+  var timeout = 10;
+  if (process.platform === "linux") {
+    timeout = 200;
+  }
+  setTimeout(function () {
+    TrayWindow.setOptions({
+      trayIconPath: path.join("./dist/uploader-ng-app/assets/logo.png"),
+      windowUrl: `file://${path.join(__dirname, "./dist/uploader-ng-app/index.html")}`,
+      width: 340,
+      height: 380,
+    });
+  }, timeout);
+});

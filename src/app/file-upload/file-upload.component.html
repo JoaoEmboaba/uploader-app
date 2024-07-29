@@ -1,9 +1,15 @@
-<div class="container">
-  <h1>File Upload component</h1>
-  <div class="file-upload">
-    <input type="file" (change)="handleFileChange($event)">
-    <br>
-    <button (click)="handleUpload()">Upload</button>
-    <mat-progress-bar id="progress-bar" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+<div id="container">
+  <div class="file-container">
+    <img src=".../dist/uploader-ng-app/assets/logo_drop.png">
+    <span>Drag file here</span>
   </div>
+<hr>
+<div class="screen">
+  <img id="file" src=".../dist/uploader-ng-app/assets/file.png">
+  <span>Select File</span>
+  <div class="images">
+    <img src=".../dist/uploader-ng-app/assets/command.png">
   </div>
+</div>
+<button>Upload File</button>
+</div>
