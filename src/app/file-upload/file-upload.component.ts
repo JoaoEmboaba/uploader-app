@@ -84,7 +84,9 @@ export class FileUploadComponent {
       await this.uploadToPresignedUrl(await this.getPresignedUrl());
       this.selectFile = null;
       this.uploadProgress = 0;
-      window.alert('Upload concluído com sucesso\nA url de download foi copiada para a sua área de transferência');
+      if (this.uploadProgress === 0) {
+        window.alert('Upload concluído com sucesso\nA url de download foi copiada para a sua área de transferência');
+      }
     } catch(error: any) {
       console.error('Erro realizando o upload', error);
     }
