@@ -7,7 +7,7 @@ const createWindow = () => {
     win = new BrowserWindow({
     height: 300,
     width: 250,
-    resizable: true,
+    resizable: false,
     icon: __dirname + './src/assets/logo.png'
   });
 
