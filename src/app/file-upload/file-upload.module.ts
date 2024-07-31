@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileUploadComponent } from './file-upload.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -13,4 +13,5 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     FileUploadComponent,
   ]
 })
-export class FileUploadModule { }
+export class FileUploadModule {
+ }

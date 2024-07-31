@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import axios from 'axios';
 import { enviroment } from 'enviroments/enviroment'
 
+interface matProgressBar {
+
+}
+
 @Component({
   selector: 'file-upload',
   templateUrl: './file-upload.component.html',
@@ -11,7 +15,28 @@ import { enviroment } from 'enviroments/enviroment'
 export class FileUploadComponent {
   selectFile: File | null = null;
   uploadProgress: number = 0;
+  preSignedUrl: string = "";
   apiEndpoint: any = enviroment.API_ENDPOINT_URL;
+  isDragOver = false;
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = true;
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = false;
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = false;
+
+    if (event.dataTransfer) {
+      this.selectFile = event.dataTransfer.files[0];
+    }
+  }
 
   handleFileChange(event: any) {
     this.selectFile = event.target.files[0];
@@ -20,9 +45,9 @@ export class FileUploadComponent {
   async getPresignedUrl() : Promise<string> {
     try {
       const response = await axios.get(this.apiEndpoint);
-      const preSignedUrl = response.data.presignedUrl;
-      console.log(preSignedUrl);
-      return preSignedUrl;
+      this.preSignedUrl = response.data.presignedUrl;
+      console.log(this.preSignedUrl);
+      return this.preSignedUrl;
     } catch(error: any) {
       console.error('Erro ao consultar/gerar URL pré assinada', error);
       throw error;
@@ -42,12 +67,12 @@ export class FileUploadComponent {
         }
       });
       console.log(uploadResponse);
+      navigator.clipboard.writeText(this.preSignedUrl.split("?")[0]);
     } catch(error: any) {
       console.error('Erro fazendo o upload do arquivo: ', error);
       throw error;
     }
     this.uploadProgress = 100;
-    window.alert('Upload concluído com sucesso\nA url de download foi copiada para a sua área de transferência');
   }
 
   async handleUpload() {
@@ -57,6 +82,9 @@ export class FileUploadComponent {
         return;
       }
       await this.uploadToPresignedUrl(await this.getPresignedUrl());
+      this.selectFile = null;
+      this.uploadProgress = 0;
+      window.alert('Upload concluído com sucesso\nA url de download foi copiada para a sua área de transferência');
     } catch(error: any) {
       console.error('Erro realizando o upload', error);
     }

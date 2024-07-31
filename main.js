@@ -5,10 +5,17 @@ let quit = false
 
 const createWindow = () => {
     win = new BrowserWindow({
-    height: 400,
-    width: 400,
-    icon: __dirname + './src/assets/upload.png'
+    height: 300,
+    width: 250,
+    resizable: true,
+    icon: __dirname + './src/assets/logo.png'
   });
+
+  win.setBounds({x: 50, y: 700});
+
+  win.once('ready-to-show', () => {
+    win.show()
+  })
 
   win.loadFile('./dist/uploader-ng-app/index.html');
 
@@ -30,7 +37,7 @@ app.whenReady().then(() => {
 })
 
 app.on('ready', () => {
-  const tray = new Tray(__dirname + './src/assets/upload.png')
+  const tray = new Tray(__dirname + './src/assets/logo.png')
 
   tray.setContextMenu(Menu.buildFromTemplate([
     {
