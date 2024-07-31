@@ -1,9 +1,16 @@
 <div class="container">
-  <h1>File Upload component</h1>
-  <div class="file-upload">
+  <div class="drop-zone" (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"
+  [class.dragover]="isDragOver">
+    <img src="assets/drop-logo.png" alt="drop logo">
+    <span>Drop File Here</span>
     <input type="file" (change)="handleFileChange($event)">
-    <br>
-    <button (click)="handleUpload()">Upload</button>
-    <mat-progress-bar id="progress-bar" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
   </div>
+  <mat-progress-bar *ngIf="uploadProgress > 0" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+  <div class="select-file" *ngIf="selectFile">
+    <span>{{ selectFile.name }}</span>
   </div>
+  <hr>
+  <button (click)="handleUpload()">Upload File</button>
+</div>
+
