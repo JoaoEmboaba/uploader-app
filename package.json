@@ -10,7 +10,7 @@
     "test": "ng test",
     "electron": "ng build --base-href ./ && electron --enable-transparent-visuals .",
     "package": "electron-forge package",
-    "fast": "electron --enable-transparent-visuals ."
+    "forge": "electron-forge make"
   },
   "private": true,
   "dependencies": {
