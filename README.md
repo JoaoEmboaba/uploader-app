@@ -9,3 +9,18 @@ Antes do app começar a ser distribuído, para executa-lo de forma correta, exec
 
 ### Para "rodar o app"
 Dentro da pasta out, encontre o arquivo uploader-ng-app.exe no diretório `/uploader-app/out/uploader-ng-app-win32-x64/uploader-ng-app.exe`
+
+### Importante
+`Tipos de arquivos permitidos`:
+- .pdf
+- .png
+- .jpeg
+
+`MimeTypes` Não permitidos:
+- .exe
+- .ddl
+- .bat
+- .cmd
+- .sh
+- .cgi
+- .jar

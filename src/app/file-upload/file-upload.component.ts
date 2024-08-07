@@ -81,6 +81,11 @@ export class FileUploadComponent {
         window.alert('Nenhum arquivo selecionado');
         return;
       }
+      if (this.selectFile.size > 100000000) {
+        window.alert('O arquivo excede o limite de 100MB');
+        this.selectFile = null;
+        return;
+      }
       await this.uploadToPresignedUrl(await this.getPresignedUrl());
       this.selectFile = null;
       this.uploadProgress = 0;
