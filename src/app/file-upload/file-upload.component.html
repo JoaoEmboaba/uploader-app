@@ -4,8 +4,7 @@
   [class.dragover]="isDragOver">
     <img src="assets/drop-logo.png" alt="drop logo">
     <span>Drop File Here</span>
-    <input type="file" accept="image/png, image/jpeg, application/pdf"
-    max="1000000" (change)="handleFileChange($event)">
+    <input type="file" (change)="handleFileChange($event)">
   </div>
   <mat-progress-bar *ngIf="uploadProgress > 0" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
   <div class="select-file" *ngIf="selectFile">

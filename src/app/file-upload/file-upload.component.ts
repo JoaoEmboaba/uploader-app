@@ -2,10 +2,6 @@ import { Component } from '@angular/core';
 import axios from 'axios';
 import { enviroment } from 'enviroments/enviroment'
 
-interface matProgressBar {
-
-}
-
 @Component({
   selector: 'file-upload',
   templateUrl: './file-upload.component.html',
@@ -18,6 +14,7 @@ export class FileUploadComponent {
   preSignedUrl: string = "";
   apiEndpoint: any = enviroment.API_ENDPOINT_URL;
   isDragOver = false;
+  acceptedFileTypes = ['image/png', 'image/jpeg', 'application/pdf'];
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
@@ -81,11 +78,19 @@ export class FileUploadComponent {
         window.alert('Nenhum arquivo selecionado');
         return;
       }
+
+      if(!this.acceptedFileTypes.includes(this.selectFile.type)) {
+        window.alert('Tipo de arquivo não suportado\nExtensões suportadas: .png, .jpeg, .pdf');
+        this.selectFile = null;
+        return;
+      }
+
       if (this.selectFile.size > 100000000) {
         window.alert('O arquivo excede o limite de 100MB');
         this.selectFile = null;
         return;
       }
+
       await this.uploadToPresignedUrl(await this.getPresignedUrl());
       this.selectFile = null;
       this.uploadProgress = 0;
