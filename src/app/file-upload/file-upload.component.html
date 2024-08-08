@@ -1,15 +1,16 @@
-<div id="container">
-  <div class="file-container">
-    <img src=".../dist/uploader-ng-app/assets/logo_drop.png">
-    <span>Drag file here</span>
+<div class="container">
+  <div class="drop-zone" (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"
+  [class.dragover]="isDragOver">
+    <img src="assets/drop-logo.png" alt="drop logo">
+    <span>Drop File Here</span>
+    <input type="file" (change)="handleFileChange($event)">
   </div>
-<hr>
-<div class="screen">
-  <img id="file" src=".../dist/uploader-ng-app/assets/file.png">
-  <span>Select File</span>
-  <div class="images">
-    <img src=".../dist/uploader-ng-app/assets/command.png">
+  <mat-progress-bar *ngIf="uploadProgress > 0" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+  <div class="select-file" *ngIf="selectFile">
+    <span>{{ selectFile.name }}</span>
   </div>
+  <hr>
+  <button (click)="handleUpload()">Upload File</button>
 </div>
-<button>Upload File</button>
-</div>
+

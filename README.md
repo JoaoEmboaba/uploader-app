@@ -1,27 +1,26 @@
-# UploaderNgApp
+## Uploader App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.7.
+## Instruções para executar o app
 
-## Development server
+Antes do app começar a ser distribuído, para executa-lo de forma correta, execute os seguintes comandos:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- `npm run build` (Gera a pasta dist com os fontes necessários para visualização e funcionamento do app)
+- `npm run forge --arch="i32, x64"` (Gera a pasta out com os arquivos gerados para executar o app no desktop para arquiteturas windows i32 e 64 bits)
 
-## Code scaffolding
+### Para "rodar o app"
+Dentro da pasta out, encontre o arquivo uploader-ng-app.exe no diretório `/uploader-app/out/uploader-ng-app-win32-x64/uploader-ng-app.exe`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Importante
+`Tipos de arquivos permitidos`:
+- .pdf
+- .png
+- .jpeg
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`MimeTypes` Não permitidos:
+- .exe
+- .ddl
+- .bat
+- .cmd
+- .sh
+- .cgi
+- .jar

@@ -1,4 +1,5 @@
-#container {
+.container {
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,76 +16,67 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  border: 2px;
-  border-style: dashed;
-  border-radius: 15px;
-  border-color: #7A9688;
-  gap: 9px;
-  margin-top: 32px;
-  margin-bottom: 24px;
-  padding: 23px 35px;
-  box-shadow: 0px 13px 4px -5px rgba(0, 0, 0, 0.25);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #A1A1A1;
 }
 
-.file-container > img {
-  margin-right: 9px;
-}
-
-.file-container > span {
-  color: #7A9688;
-  font-weight: lighter;
-}
-
-hr {
-  width: 216px;
-  border-width: 3px;
-  border-color: rgb(122, 150, 136, 0.38);
-}
-
-button {
-
-  width: 120px;
-  height: 45.98px;
-  color: #7A9688;
-  padding: 13px 20px;
-  margin-top: 24px;
-  border: 2px;
-  border-style: solid;
-  border-radius: 8.52px;
-  border-color: #7A9688;
-  background-color: #3A3A3A;
-  text-align: center;
-  box-shadow: 0px 13px 4px -5px rgba(0, 0, 0, 0.25);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-button:hover {
-  transition: 0.5s;
-  background-color: #7A9688;
-  color: #252525;
-}
-
-.screen {
+.drop-zone {
+  margin-top: 23px;
+  margin-bottom: 3px;
+  width: 180px;
+  height: 90px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  border: 1px dashed #262626;
+  border-radius: 15px;
+  transition: background-color 0.3s;
+}
+
+.drop-zone > span {
+  margin-left: 15px;
+}
+
+.drop-zone.dragover {
+  background-color: #C8C8C8;
+}
+
+hr {
+  width: 200px;
+  border: 1.5px solid rgba(38, 38, 38, 0.52);
+  margin-top: 15px;
+}
+
+.select-file {
   margin-top: 10px;
-  color: #7A9688;
+  font-size: 10px;
 }
 
-#file {
-  margin-right: 5px;
+button {
+  color: #a1a1a1;
+  margin-top: 10px;
+  width: 120px;
+  height: 40px;
+  padding: 10px;
+  text-align: center;
+  background-color: #3A3A3A;
+  border: 1px solid #262626;
+  border-radius: 6px;
+  transition: background-color 1s;
 }
 
-.images {
-  display: flex;
-  flex-direction: row;
-  margin-left: 97px;
+button:hover {
+  background-color: #262626;
 }
 
-#enter {
-  margin-left: 7px;
+mat-progress-bar {
+  background-color: #262626;
+  color: #A1A1A1;
+  border-color: #A1A1A1;
+  width: 160px;
+  margin-top: 2px;
+}
+
+input[type="file"] {
+  display: none;
 }
