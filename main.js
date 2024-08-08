@@ -1,7 +1,7 @@
-const TrayWindow = require("electron-tray-window");
+const { app, BrowserWindow, Tray, Menu } = require('electron');
 
-const { ipcMain, Tray, app, BrowserWindow } = require("electron");
-const path = require("path");
+let win
+let quit = false
 
 const createWindow = () => {
     win = new BrowserWindow({
