@@ -5,13 +5,11 @@ let quit = false
 
 const createWindow = () => {
     win = new BrowserWindow({
-    height: 300,
+    height: 315,
     width: 250,
     resizable: false,
     icon: __dirname + './src/assets/logo.png'
   });
-
-  win.setBounds({x: 50, y: 700});
 
   win.once('ready-to-show', () => {
     win.show()

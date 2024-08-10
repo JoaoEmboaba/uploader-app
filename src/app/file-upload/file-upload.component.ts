@@ -112,6 +112,8 @@ export class FileUploadComponent {
         return;
       }
 
+      this.messageService.add({ severity: 'info', summary: 'Iniciando upload...', closable: false, life: 2000, icon: 'pi' });
+
       await this.uploadToPresignedUrl(await this.getPresignedUrl());
       this.selectFile = null;
       this.uploadProgress = 0;
