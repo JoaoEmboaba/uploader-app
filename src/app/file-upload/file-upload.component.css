@@ -1,6 +1,6 @@
 :host ::ng-deep .p-messages {
   font-size: small;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 .container {
@@ -23,6 +23,7 @@
   border: 1px dashed #262626;
   border-radius: 15px;
   transition: background-color 0.3s;
+  box-shadow: 8px 12px 4px -5px rgba(0, 0, 0, 0.25);
 }
 
 .drop-zone > span {
@@ -66,7 +67,7 @@ mat-progress-bar {
   color: #A1A1A1;
   border-color: #A1A1A1;
   width: 160px;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 input[type="file"] {
