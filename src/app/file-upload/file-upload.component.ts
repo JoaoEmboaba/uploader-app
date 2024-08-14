@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import axios from 'axios';
 import { enviroment } from 'enviroments/enviroment'
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'file-upload',
@@ -15,6 +16,8 @@ export class FileUploadComponent {
   apiEndpoint: any = enviroment.API_ENDPOINT_URL;
   isDragOver = false;
   acceptedFileTypes = ['image/png', 'image/jpeg', 'application/pdf'];
+
+  constructor(private messageService: MessageService) {}
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
@@ -75,27 +78,53 @@ export class FileUploadComponent {
   async handleUpload() {
     try {
       if (!this.selectFile) {
-        window.alert('Nenhum arquivo selecionado');
+        this.messageService.add({
+          severity:'warn',
+          summary:'Nenhum arquivo selecionado!!',
+          closable: false,
+          life: 2000,
+          icon: 'pi'
+        })
         return;
       }
 
       if(!this.acceptedFileTypes.includes(this.selectFile.type)) {
-        window.alert('Tipo de arquivo não suportado\nExtensões suportadas: .png, .jpeg, .pdf');
+        this.messageService.add({
+          severity:'warn',
+          summary:'Tipo de arquivo não suportado!!',
+          closable: false,
+          life: 2000,
+          icon: 'pi'
+        })
         this.selectFile = null;
         return;
       }
 
       if (this.selectFile.size > 100000000) {
-        window.alert('O arquivo excede o limite de 100MB');
+        this.messageService.add({
+          severity:'warn',
+          summary:'O arquivo excedeu o limite de 100MB!!',
+          closable: false,
+          life: 2000,
+          icon: 'pi'
+        })
         this.selectFile = null;
         return;
       }
+
+      this.messageService.add({ severity: 'info', summary: 'Iniciando upload...', closable: false, life: 2000, icon: 'pi' });
 
       await this.uploadToPresignedUrl(await this.getPresignedUrl());
       this.selectFile = null;
       this.uploadProgress = 0;
       if (this.uploadProgress === 0) {
-        window.alert('Upload concluído com sucesso\nA url de download foi copiada para a sua área de transferência');
+        this.messageService.add({
+          severity:'sucess',
+          summary: 'Upload concluído com sucesso!',
+          closable: false,
+          life: 2000,
+          icon: 'pi'
+        })
       }
     } catch(error: any) {
       console.error('Erro realizando o upload', error);

@@ -6,6 +6,7 @@
     <span>Drop File Here</span>
     <input type="file" (change)="handleFileChange($event)">
   </div>
+  <p-messages></p-messages>
   <mat-progress-bar *ngIf="uploadProgress > 0" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
   <div class="select-file" *ngIf="selectFile">
     <span>{{ selectFile.name }}</span>
