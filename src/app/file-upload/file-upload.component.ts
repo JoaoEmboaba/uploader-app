@@ -44,7 +44,8 @@ export class FileUploadComponent {
 
   async getPresignedUrl() : Promise<string> {
     try {
-      const response = await axios.get(this.apiEndpoint);
+      const response = await axios.get
+      (`${this.apiEndpoint}?contentType=${this.selectFile?.type}&key=${this.selectFile?.type.split("/")[1]}`);
       this.preSignedUrl = response.data.presignedUrl;
       console.log(this.preSignedUrl);
       return this.preSignedUrl;
@@ -58,7 +59,7 @@ export class FileUploadComponent {
     try {
       const uploadResponse = await axios.put(presignedUrl, this.selectFile, {
         headers: {
-          'Content-Type': 'application/png'
+          'Content-Type': this.selectFile?.type
         },
         onUploadProgress: (progressEvent: any) => {
           this.uploadProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
