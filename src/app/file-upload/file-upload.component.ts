@@ -15,7 +15,7 @@ export class FileUploadComponent {
   preSignedUrl: string = "";
   apiEndpoint: any = enviroment.API_ENDPOINT_URL;
   isDragOver = false;
-  acceptedFileTypes = ['image/png', 'image/jpeg', 'application/pdf'];
+  acceptedFileTypes = ['image/png', 'image/jpeg', 'application/pdf', 'video/mp4'];
 
   constructor(private messageService: MessageService) {}
 
