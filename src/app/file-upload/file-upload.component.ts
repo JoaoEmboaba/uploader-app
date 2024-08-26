@@ -45,7 +45,8 @@ export class FileUploadComponent {
   async getPresignedUrl() : Promise<string> {
     try {
       const response = await axios.get
-      (`${this.apiEndpoint}?contentType=${this.selectFile?.type}&key=${this.selectFile?.type.split("/")[1]}`);
+      (`${this.apiEndpoint}?contentType=${this.selectFile?.type}
+        &key=${this.selectFile?.type.split("/")[1]}&fileName=${this.selectFile?.name}`);
       this.preSignedUrl = response.data.presignedUrl;
       console.log(this.preSignedUrl);
       return this.preSignedUrl;
