@@ -26,4 +26,4 @@ Dentro da pasta out, encontre o arquivo uploader-ng-app.exe no diretório `/uplo
 - .jar
 
 ## Desenho da arquitetura do App
-![Desenho de arquitetura](src/assets/uploader-app-draw.jpeg)
+![Desenho de arquitetura](src/assets/uploader-app-draw-2.jpeg)
