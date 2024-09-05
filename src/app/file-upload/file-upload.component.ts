@@ -12,9 +12,10 @@ import { MessageService } from 'primeng/api';
 export class FileUploadComponent {
   selectFile: File | null = null;
   uploadProgress: number = 0;
-  preSignedUrl: string = "";
+  preSignedUrl: string = '';
   apiEndpoint: any = enviroment.API_ENDPOINT_URL;
   isDragOver = false;
+  operationType: string = 'putObject';
   acceptedFileTypes = ['image/png', 'image/jpeg', 'application/pdf', 'video/mp4'];
 
   constructor(private messageService: MessageService) {}
@@ -43,8 +44,9 @@ export class FileUploadComponent {
   }
 
   async getPresignedUrl() : Promise<string> {
+    const responseUrl = `${this.apiEndpoint}?contentType=${this.selectFile?.type}&key=${this.selectFile?.type.split("/")[1]}&fileName=${this.selectFile?.name.split(".")[0]}&operationType=${this.operationType}`;
     try {
-      const response = await axios.get(`${this.apiEndpoint}?contentType=${this.selectFile?.type}&key=${this.selectFile?.type.split("/")[1]}&fileName=${this.selectFile?.name.split(".")[0]}`);
+      const response = await axios.get(responseUrl);
       this.preSignedUrl = response.data.presignedUrl;
       console.log(this.preSignedUrl);
       return this.preSignedUrl;
@@ -67,7 +69,6 @@ export class FileUploadComponent {
         }
       });
       console.log(uploadResponse);
-      navigator.clipboard.writeText(this.preSignedUrl.split("?")[0]);
     } catch(error: any) {
       console.error('Erro fazendo o upload do arquivo: ', error);
       throw error;
@@ -115,6 +116,8 @@ export class FileUploadComponent {
       this.messageService.add({ severity: 'info', summary: 'Iniciando upload...', closable: false, life: 2000, icon: 'pi' });
 
       await this.uploadToPresignedUrl(await this.getPresignedUrl());
+      this.operationType = 'getObject';
+      navigator.clipboard.writeText(await this.getPresignedUrl());
       this.selectFile = null;
       this.uploadProgress = 0;
       if (this.uploadProgress === 0) {
