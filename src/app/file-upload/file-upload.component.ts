@@ -118,6 +118,7 @@ export class FileUploadComponent {
       await this.uploadToPresignedUrl(await this.getPresignedUrl());
       this.operationType = 'getObject';
       navigator.clipboard.writeText(await this.getPresignedUrl());
+      this.operationType = 'putObject';
       this.selectFile = null;
       this.uploadProgress = 0;
       if (this.uploadProgress === 0) {
