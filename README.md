@@ -15,6 +15,7 @@ Dentro da pasta out, encontre o arquivo uploader-ng-app.exe no diretório `/uplo
 - .pdf
 - .png
 - .jpeg
+- .mp4
 
 `MimeTypes` Não permitidos:
 - .exe
