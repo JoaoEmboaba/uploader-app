@@ -5,9 +5,11 @@ let quit = false
 
 const createWindow = () => {
     win = new BrowserWindow({
-    height: 315,
-    width: 250,
+    height: 325,
+    width: 300,
     resizable: false,
+    alwaysOnTop: true,
+    autoHideMenuBar: true,
     icon: __dirname + './src/assets/logo.png'
   });
 
