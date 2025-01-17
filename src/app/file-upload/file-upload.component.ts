@@ -101,10 +101,10 @@ export class FileUploadComponent {
         return;
       }
 
-      if (this.selectFile.size > 100000000) {
+      if (this.selectFile.size > 700000000) {
         this.messageService.add({
           severity:'warn',
-          summary:'O arquivo excedeu o limite de 100MB!!',
+          summary:'O arquivo excedeu o limite de 700MB!!',
           closable: false,
           life: 2000,
           icon: 'pi'
