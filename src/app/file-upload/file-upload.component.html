@@ -5,7 +5,7 @@
     <span>Drop your file here or <br><u>click to open file explorer</u></span>
     <input type="file" (change)="handleFileChange($event)">
   </div>
-  <span *ngIf="uploadProgress === 0 && selectFile === null" class="supported-files">Supported files types: (.png, .jpg, .mp4, .pdf)</span>
+  <span *ngIf="showSupportedFileTypes()" class="supported-files">Supported files types: (.png, .jpg, .mp4, .pdf)</span>
   <p-messages></p-messages>
   <mat-progress-bar *ngIf="uploadProgress > 0" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
   <div class="select-file" *ngIf="selectFile">

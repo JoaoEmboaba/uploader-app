@@ -9,7 +9,7 @@ const createWindow = () => {
     width: 300,
     resizable: false,
     alwaysOnTop: true,
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     icon: __dirname + './src/assets/logo.png'
   });
 
