@@ -2,10 +2,11 @@
   <div class="drop-zone" (dragover)="onDragOver($event)"
   (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"
   [class.dragover]="isDragOver">
-    <img src="assets/drop-logo.png" alt="drop logo">
-    <span>Drop File Here</span>
+    <span>Drop your file here or <br><u>click to open file explorer</u></span>
     <input type="file" (change)="handleFileChange($event)">
   </div>
+  <span *ngIf="showSupportedFileTypes()" class="supported-files">Supported files types: (.png, .jpg, .mp4, .pdf)</span>
+  <p-messages></p-messages>
   <mat-progress-bar *ngIf="uploadProgress > 0" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
   <div class="select-file" *ngIf="selectFile">
     <span>{{ selectFile.name }}</span>

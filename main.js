@@ -5,13 +5,13 @@ let quit = false
 
 const createWindow = () => {
     win = new BrowserWindow({
-    height: 300,
-    width: 250,
-    resizable: true,
+    height: 325,
+    width: 300,
+    resizable: false,
+    alwaysOnTop: true,
+    autoHideMenuBar: false,
     icon: __dirname + './src/assets/logo.png'
   });
-
-  win.setBounds({x: 50, y: 700});
 
   win.once('ready-to-show', () => {
     win.show()
